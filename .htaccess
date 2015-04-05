@@ -1,0 +1,19 @@
+<Files "password">
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files ".htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files ".gitignore>
+Order Allow,Deny
+Deny from all
+</Files>
+
+<Files "LICENSE>
+Order Allow,Deny
+Deny from all
+</Files>
