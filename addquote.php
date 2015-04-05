@@ -1,4 +1,10 @@
 <?php
+	/*
+	 * addquote.php
+	 * Copyright (c) 2015 Markus Himmel
+	 * This file is distributed under the terms of the MIT license.
+	 */
+
 	$servername = "mysql17.1blu.de";
 	$username = "s220334_2232988";
 	$dbname = "db220334x2232988";
