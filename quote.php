@@ -13,25 +13,25 @@
 	$password = fread($pwfile, 24);
 
 	// Create connection
-	$conn = mysqli_connect($servername, $username, $password, $dbname);
+	$conn = new mysqli($servername, $username, $password, $dbname);
 
 	// Check connection
-	if (!$conn) {
-	    die("Connection failed: " . mysqli_connect_error());
+	if ($conn->connect_error) {
+	    die("Connection failed: " . $conn->connect_error);
 	}
 
-	$sql = "SELECT MAX(ID) AS m FROM Quotes";
-	$result = mysqli_query($conn, $sql);
-
-	$only = mysqli_fetch_assoc($result);
-	$maxid = $only["m"];
-
-	$index = rand(0, $maxid);
-
-	$quote= "SELECT Quote FROM Quotes WHERE ID = $index";
-	$result = mysqli_query($conn, $quote);
-	$only = mysqli_fetch_assoc($result);
-	echo $only["Quote"];
+	$sql = $conn->prepare("SELECT Quote FROM Quotes WHERE Streamer = ? ORDER BY RAND() LIMIT 1");
+	if (!isset($_GET["s"])) {
+		die("No streamer specified");
+	}
+	$streamer = $_GET["s"];
+	$sql->bind_param("s", $streamer);
+	$sql->execute();
+	$sql->bind_result($q);
+	if (!$sql->fetch()) {
+		die("Query failed.");
+	}
+	echo $q;
 
 	mysqli_close($conn);
 ?>
