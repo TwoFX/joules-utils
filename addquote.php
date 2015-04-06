@@ -19,18 +19,17 @@
 	    die("Connection failed: " . $conn->conect_error);
 	}
 
-	$sql = $conn->prepare("SELECT MAX(ID) AS m FROM Quotes WHERE Streamer = ?");
+	$sql = $conn->prepare("SELECT COUNT(ID) AS m FROM Quotes WHERE Streamer = ?");
 	if (!isset($_GET["s"])) {
 		die("No streamer specified");
 	}
 	$streamer = $_GET["s"];
 	$sql->bind_param("s", $streamer);
 	$sql->execute();
-	$sql->bind_result($new);
+	$sql->bind_result($id);
 	if (!$sql->fetch()) {
 		die("Query failed.");
 	}
-	$id = $new + 1;
 	$sql->close();
 	$insert = $conn->prepare("INSERT INTO Quotes (ID, Quote, Streamer) VALUES (?, ?, ?)");
 	$quote = $_GET["q"];
