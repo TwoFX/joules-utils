@@ -37,5 +37,5 @@
 	$insert->execute();
 	$insert->close();
 	$conn->close();
-	echo "Quote added successfully.";
+	echo "Quote added successfully. Please see https://github.com/TwoFX/joules-utils/blob/master/deprecation.md";
 ?>

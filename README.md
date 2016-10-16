@@ -1,3 +1,5 @@
+**Please do not use this bot anymore. Please refer to [this page](deprecation.md). Thank you**
+
 To get random quotes for your channel, you need Nightbot. Then run the following
 commands:
 
